@@ -1,0 +1,40 @@
+{
+  "name": "vue-webpack4-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "watch": "webpack-dev-server --watch",
+    "dev": "webpack-dev-server --open"
+  },
+  "author": "Kip Song",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.5.3",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.3.0",
+    "image-webpack-loader": "^6.0.0",
+    "node-sass": "^4.14.1",
+    "px2rem-loader": "^0.1.9",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.1",
+    "url-loader": "^4.1.0",
+    "vue": "^2.6.11",
+    "vue-loader": "^15.9.2",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-merge": "^4.2.2"
+  },
+  "dependencies": {
+    "lib-flexible": "^0.3.2",
+    "vant": "^2.8.3",
+    "vue-router": "^3.2.0",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
