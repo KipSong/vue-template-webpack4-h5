@@ -1,78 +1,63 @@
 import Vue from "vue";
 import Router from "vue-router";
-import store from "../store/index";
+// import store from "../store/index";
 
 Vue.use(Router);
-
 const router = new Router({
   routes: [
     {
       path: "/",
-      redirect: "/index"
+      redirect: "/dashboard"
     },
     {
-      path: "/index",
-      component: () => import("@/views/index/index"),
-      meta: {
-        title: "每日生鲜",
-        // 缓存首页
-        keepAlive: true
-      }
+      path: "/dashboard",
+      component: () => import("@/components/footer.vue"),
+      redirect: "/dashboard/index",
+      children: [
+        {
+          path: "index",
+          meta: {
+            title: "首页",
+            keepAlive: true
+          },
+          component: () => import("@/views/dashboard/index.vue")
+        },
+      ]
     },
-    // {
-    //   path: "/cart",
-    //   meta: {
-    //     title: "购物车"
-    //   },
-    //   component: () => import("@/views/cart/index")
-    // },
-    // {
-    //   path: "/my",
-    //   component: () => import("@/views/my/index"),
-    //   redirect: "/my/center",
-    //   children: [
-    //     {
-    //       path: "center",
-    //       meta: {
-    //         title: "个人中心"
-    //       },
-    //       component: () => import("@/views/my/children/center")
-    //     },
-    //     {
-    //       path: "set",
-    //       meta: {
-    //         title: "设置"
-    //       },
-    //       component: () => import("@/views/my/children/set")
-    //     }
-    //   ]
-    // },
-    // {
-    //   path: "/login",
-    //   component: () => import("@/views/login/index"),
-    //   meta: {
-    //     title: "登陆"
-    //   }
-    // },
-    // {
-    //   path: "*",
-    //   component: () => import("@/components/NotFound")
-    // }
+    {
+      path: "/my",
+      meta: {
+        title: "我的"
+      },
+      component: () => import("@/components/footer.vue"),
+      redirect: "/my/index",
+      children: [
+        {
+          path: "index",
+          meta: {
+            title: "我的",
+            keepAlive: true
+          },
+          component: () => import("@/views/my/index.vue")
+        }
+      ]
+    },
+
   ]
 });
 
-// router.beforeEach((to, from, next) => {
-//   let { title, needLogin } = to.meta;
-//   let { isLogin } = store.state;
-//   document.title = title;
+router.beforeEach((to, from, next) => {
+  let { title, needLogin } = to.meta;
+  // let { isLogin } = store.state;
+  document.title = title;
 
-//   if (needLogin && !isLogin) {
-//     next({
-//       path: "/login"
-//     });
-//   } else {
-//     next();
-//   }
-// });
+  // if (needLogin && !isLogin) {
+  //   next({
+  //     path: "/login"
+  //   });
+  // } else {
+  next();
+  // }
+});
 
 export default router;

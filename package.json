@@ -11,16 +11,22 @@
   "author": "Kip Song",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-preset-env": "^1.7.0",
+    "@babel/core": "^7.9.6",
+    "@babel/polyfill": "^7.8.7",
+    "@babel/preset-env": "^7.9.6",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-import": "^1.13.0",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "chalk": "^4.0.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.5.3",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
-    "image-webpack-loader": "^6.0.0",
+    "ip": "^1.1.5",
+    "less": "^3.11.1",
+    "less-loader": "^6.1.0",
     "node-sass": "^4.14.1",
-    "px2rem-loader": "^0.1.9",
+    "opn": "^6.0.0",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
     "url-loader": "^4.1.0",
@@ -29,12 +35,10 @@
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
-    "webpack-merge": "^4.2.2"
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "lib-flexible": "^0.3.2",
     "vant": "^2.8.3",
-    "vue-router": "^3.2.0",
-    "webpack-dev-server": "^3.11.0"
+    "vue-router": "^3.2.0"
   }
 }

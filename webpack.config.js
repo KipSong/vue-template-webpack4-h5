@@ -4,6 +4,9 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const ip = require('ip').address();
+const open = require('opn');
+const chalk = require('chalk');
 
 module.exports = {
   entry: path.join(__dirname, "/src/main.js"),
@@ -12,23 +15,27 @@ module.exports = {
     filename: 'bundle.[hash].js'
   },
   devServer: {
+    host: ip,
     contentBase: "./public",
     port: "8080",
     inline: true,
     historyApiFallback: true,
+    after() {
+      open(`http://${ip}:${this.port}`)
+        .then(() => {
+          console.log(chalk.cyan(`成功打开链接： http://${ip}:${this.port}`));
+        })
+        .catch(err => {
+          console.log(chalk.red(err));
+        });;
+    }
   },
   devtool: 'source-map',
   module: {
     rules: [
-
       {
         test: /\.vue$/,
         use: ['vue-loader']
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "babel-loader"
       },
       {
         test: /\.css$/,
@@ -37,6 +44,15 @@ module.exports = {
       {
         test: /\.(scss|sass)$/,   // 正则匹配以.scss和.sass结尾的文件
         use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', 'less-loader']
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader"
       },
       {
         test: /\.(jpg|jpeg|png|svg|gif)$/,
@@ -48,19 +64,6 @@ module.exports = {
             esModule: false
           }
         }]
-      },
-      {
-        test: /\.(css|less|scss|sass)$/,
-        use: [
-          // 将px转换成rem
-          {
-            loader: 'px2rem-loader',
-            options: {
-              remUnit: 10, // 375尺寸
-              remPrecision: 8
-            }
-          }
-        ]
       }
     ]
   },

@@ -1,34 +1,28 @@
 <template>
-  <div>
-    <keep-alive>
-      <router-view v-if="$route.meta.keepAlive"></router-view>
-    </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive"></router-view>
+  <div ref="page">
+    <keep-alive><router-view v-if="$route.meta.keepAlive" /></keep-alive>
+    <router-view v-if="!$route.meta.keepAlive" />
   </div>
 </template>
 
 <script>
 export default {
   name: "app",
+  components: {},
   data() {
-    return {
-      message: "2222"
-    };
+    return {};
   },
-  created() {
-    console.log(Symbol);
-    console.log(this.imgUrl);
-    console.log(process.env.NODE_ENV);
-    [1, 2, 3].map(n => n + 1);
+
+  methods: {},
+  created() {},
+  mounted() {
+    let page = this.$refs["page"];
+    let systemHeight = document.documentElement.clientHeight;
+    document.body.style = `height:${systemHeight}px;position:fixed;top:0;left:0;width:100%;`;
   }
 };
 </script>
 
-<style scoped>
-.img {
-  width: 375px;
-  height: 200px;
-}
+
+<style  scoped>
 </style>
-
-
