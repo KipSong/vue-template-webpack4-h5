@@ -1,7 +1,28 @@
+// 监听事件
+/**
+ * 
+ * @param {Document} ele 
+ * @param {Function} fn 
+ * @param {Number} time 
+ */
+function scrollListner(ele, fn, time) {
+  ele.addEventListener("scroll", throttle(function (e) {
+    let context = this
+    var _args = [].slice.call(arguments)
+    let clientHeight = e.target.clientHeight
+    let scrollHeight = e.target.scrollHeight
+    let scrollTop = e.target.scrollTop
+    if (scrollHeight - clientHeight == scrollTop) {
+      fn.apply(context, _args)
+    }
+  }, time));
+}
+
+
 /**
  * 节流
  * @param {*} fn
- * @param {*} wait 
+ * @param {Number} wait 
  */
 function throttle(fn, wait) {
   var timer, previous, now, diff;
@@ -32,8 +53,8 @@ function throttle(fn, wait) {
 /**
  * 防抖
  * @param {*} fn 
- * @param {*} delay 
- * @param {*} isImmdeiate 
+ * @param {Number} delay 
+ * @param {Boolean} isImmdeiate 
  */
 
 function debounce(fn, delay, isImmdeiate) {
@@ -56,6 +77,7 @@ function debounce(fn, delay, isImmdeiate) {
 }
 
 export {
+  scrollListner,
   throttle,
   debounce
-} 
+}

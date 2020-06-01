@@ -1,7 +1,5 @@
 import Vue from "vue";
 import Router from "vue-router";
-// import store from "../store/index";
-
 Vue.use(Router);
 const router = new Router({
   routes: [
@@ -42,22 +40,16 @@ const router = new Router({
         }
       ]
     },
-
+    {
+      path: "/login",
+      meta: {
+        title: "登录"
+      },
+      component: () => import("@/views/login/index.vue")
+    },
   ]
 });
 
-router.beforeEach((to, from, next) => {
-  let { title, needLogin } = to.meta;
-  // let { isLogin } = store.state;
-  document.title = title;
 
-  // if (needLogin && !isLogin) {
-  //   next({
-  //     path: "/login"
-  //   });
-  // } else {
-  next();
-  // }
-});
 
 export default router;

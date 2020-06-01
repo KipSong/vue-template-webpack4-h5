@@ -1,68 +1,14 @@
 <template>
   <div ref="page">
-  <van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button>
-  <van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button>
-    <van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button>
-  <van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button>
-    <van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button>
-  <van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button>
-    <van-button type="default">默认按钮</van-button>
-      <van-button type="primary">主要按钮</van-button>
-  <van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button>
-    <van-button type="default">默认按钮</van-button>
-      <van-button type="primary">主要按钮</van-button>
-  <van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button>
-    <van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button>
-  <van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button>
-    <van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button>
-  <van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button>
-    <van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button>
-  <van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button><van-button type="default">默认按钮</van-button>
-  <van-button type="primary">主要按钮</van-button>
-  
+
+     <div class="mode"></div>
+
   </div>
 
 </template>
 
 <script>
-import { throttle } from "../../utils/throttl.js";
+import { scrollListner } from "../../utils/scrollListener.js";
 export default {
   components: {},
   data() {
@@ -71,20 +17,18 @@ export default {
   created() {},
   mounted() {
     let page = this.$refs["page"];
-    page.addEventListener("scroll", throttle(function(e) {
-      let clientHeight = e.target.clientHeight
-      let scrollHeight = e.target.scrollHeight
-      let scrollTop = e.target.scrollTop
-      if(scrollHeight - clientHeight == scrollTop){
-        console.log('到底部了')
-      } 
-      
-    }, 300));
-
+    scrollListner(page,function(e) {
+        console.log(e);
+      }, 300);
   },
   methods: {}
 };
 </script>
 
 <style>
+.mode{
+  width: 37.5rem;
+  height: 5.0rem;
+  background-color: blue;
+}
 </style>

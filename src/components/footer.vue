@@ -4,7 +4,7 @@
     <keep-alive><router-view class="tabbar-page-view" :style="navBar?`margin-top:44px;height:${systemHeight-94}px;`:`height:${systemHeight-50}px;`"  v-if="$route.meta.keepAlive"/></keep-alive>
     <router-view  v-if="!$route.meta.keepAlive" />
     <van-tabbar v-model="active" active-color="#07c160" inactive-color="#000">
-      <van-tabbar-item v-for="(item,index) in menuList" @click="handleItem(item,index)" :key="index" :icon="item.iconPath" :to="item.pathUrl">{{item.title}}</van-tabbar-item>
+      <van-tabbar-item v-for="(item,index) in menuList"  :key="index" :icon="item.iconPath" :to="item.pathUrl">{{item.title}}</van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
@@ -16,7 +16,7 @@ export default {
   props: {},
   data() {
     return {
-      systemHeight:0,
+      systemHeight: 0,
       navBar: true,
       active: 0,
       menuList: [
@@ -35,23 +35,20 @@ export default {
       ]
     };
   },
-  created() {},
+  created() {
+    const route = this.$route;
+    const { meta, path } = route;
+    this.menuList.forEach((item, index) => {
+      if (path.indexOf(item.pathUrl) !== -1) {
+        this.active = index;
+      }
+    });
+  },
   mounted() {
     let page = this.$refs["tabarPage"];
     this.systemHeight = document.documentElement.clientHeight;
-  
   },
-  methods: {
-    handleItem(item, index) {
-      this.active = index;
-    },
-    onClickLeft() {
-      Toast("返回");
-    },
-    onClickRight() {
-      Toast("按钮");
-    }
-  }
+  methods: {}
 };
 </script>
 
